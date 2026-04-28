@@ -1,18 +1,11 @@
-// Public landing page shown to logged-out users. Sticky header with primary
-// CTAs, live ~/pings.log terminal panel, clean footer strip, and a vim-style
-// status bar pinned at the bottom.
+// Public landing page. Hero copy + animated ~/pings.log terminal panel.
+// Header and footer are the app-wide shared components.
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Activity, ArrowRight, BookOpen, Check, ChevronDown, LayoutDashboard, LogOut, X } from 'lucide-react';
+import { ArrowRight, BookOpen, Check, X } from 'lucide-react';
 import { Button } from '../components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '../components/ui/dropdown-menu';
+import { SiteFooter } from '../components/SiteFooter';
+import { SiteHeader } from '../components/SiteHeader';
 import { useAuth } from '../lib/auth';
 
 interface LogEntry {
@@ -197,7 +190,7 @@ export function HeroPage() {
             <div className="flex items-center justify-between border-t border-border bg-background/60 px-3 py-2 text-[11px] text-muted-foreground">
               <span className="flex items-center gap-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-ok" />
-                99.94% up
+                ONLINE
               </span>
               <span>p50 142ms</span>
               <span>queue · idle</span>
@@ -212,103 +205,6 @@ export function HeroPage() {
   );
 }
 
-export function SiteHeader() {
-  const { user, logout } = useAuth();
-
-  return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-6 px-6">
-        <Link to="/" className="flex items-center gap-2">
-          <Activity className="h-4 w-4 text-primary" />
-          <span className="text-sm font-semibold tracking-tight">Vigil</span>
-          <span className="hidden rounded-sm border border-border bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground sm:inline">
-            v0.1
-          </span>
-        </Link>
-
-        <nav className="hidden items-center gap-5 text-[13px] sm:flex">
-          <Link to="/about" className="text-muted-foreground transition-colors hover:text-foreground">
-            Documentation
-          </Link>
-          {user && (
-            <Link to="/dashboard" className="text-muted-foreground transition-colors hover:text-foreground">
-              Dashboard
-            </Link>
-          )}
-        </nav>
-
-        <div className="ml-auto flex items-center gap-2">
-          {user ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="gap-1.5">
-                  <span className="font-mono text-xs text-muted-foreground">{user.email}</span>
-                  <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
-                <DropdownMenuLabel>Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link to="/dashboard">
-                    <LayoutDashboard /> Dashboard
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => void logout()} className="text-destructive focus:text-destructive">
-                  <LogOut /> Sign out
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <>
-              <Button asChild variant="ghost" size="sm">
-                <Link to="/login">Sign in</Link>
-              </Button>
-              <Button asChild size="sm">
-                <Link to="/register">
-                  Register <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
-              </Button>
-            </>
-          )}
-        </div>
-      </div>
-    </header>
-  );
-}
-
-export function SiteFooter() {
-  return (
-    <footer className="relative z-10 border-t border-border bg-background/80 backdrop-blur">
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-start gap-3 px-6 py-5 text-[12px] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap items-center gap-2">
-          <Activity className="h-3.5 w-3.5 text-primary" />
-          <span>© {new Date().getFullYear()} Vigil</span>
-          <span className="text-muted-foreground/40">·</span>
-          <span>MIT License</span>
-          <span className="text-muted-foreground/40">·</span>
-          <span className="inline-flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-ok" />
-            all systems operational
-          </span>
-        </div>
-        <nav className="flex items-center gap-4">
-          <Link to="/about" className="transition-colors hover:text-foreground">
-            Documentation
-          </Link>
-          <Link to="/login" className="transition-colors hover:text-foreground">
-            Sign in
-          </Link>
-          <Link to="/register" className="transition-colors hover:text-foreground">
-            Register
-          </Link>
-        </nav>
-      </div>
-    </footer>
-  );
-}
-
 export function VimStatusBar() {
   return (
     <div className="sticky bottom-0 z-30 flex w-full items-center border-t border-border bg-background text-[11px]">
@@ -320,7 +216,7 @@ export function VimStatusBar() {
       <span className="flex-1" />
       <span className="hidden px-3 py-1 text-muted-foreground md:inline">typescript</span>
       <span className="hidden px-3 py-1 text-muted-foreground md:inline">UTF-8</span>
-      <span className="px-3 py-1 text-ok">● 99.94%</span>
+      <span className="px-3 py-1 text-ok">● ONLINE</span>
     </div>
   );
 }

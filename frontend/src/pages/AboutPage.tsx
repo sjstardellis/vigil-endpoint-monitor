@@ -5,7 +5,9 @@ import { ArrowRight, BookOpen, Boxes, Command, Eye, Keyboard, Lock, Server, Spar
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/ui/table';
-import { SiteFooter, SiteHeader, VimStatusBar } from './HeroPage';
+import { SiteFooter } from '../components/SiteFooter';
+import { SiteHeader } from '../components/SiteHeader';
+import { VimStatusBar } from './HeroPage';
 
 interface Section {
   id: string;

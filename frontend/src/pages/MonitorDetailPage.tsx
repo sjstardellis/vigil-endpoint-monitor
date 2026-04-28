@@ -103,7 +103,7 @@ export function MonitorDetailPage() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['monitors'] });
       toast.success('Monitor deleted');
-      navigate('/');
+      navigate('/dashboard');
     },
     onError: () => toast.error('Delete failed.'),
   });
@@ -113,7 +113,7 @@ export function MonitorDetailPage() {
 
   return (
     <div className="space-y-6">
-      <Link to="/" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+      <Link to="/dashboard" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
         <ArrowLeft className="h-3.5 w-3.5" /> All monitors
       </Link>
 

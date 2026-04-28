@@ -10,11 +10,12 @@ const schema = z.object({
   API_PORT: z.coerce.number().int().positive().default(4000),
   CORS_ORIGIN: z.string().url().default('http://localhost:3000'),
   JWT_ACCESS_SECRET: z.string().min(32),
-  JWT_REFRESH_SECRET: z.string().min(32),
   JWT_ACCESS_EXPIRES_IN: z.string().default('15m'),
   JWT_REFRESH_EXPIRES_IN: z.string().default('7d'),
   RESEND_API_KEY: z.string().optional(),
-  EMAIL_FROM: z.string().email().optional(),
+  // Accepts both bare addresses (`a@b.com`) and display-name form (`Name <a@b.com>`),
+  // which Resend supports.
+  EMAIL_FROM: z.string().min(3).optional(),
 });
 
 const parsed = schema.safeParse(process.env);

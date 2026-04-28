@@ -186,7 +186,7 @@ EMAIL_FROM=alerts@yourdomain.com
 │       │   ├── Layout.tsx
 │       │   ├── ProtectedRoute.tsx
 │       │   ├── StatusBadge.tsx
-│       │   ├── StatCard.tsx
+│       │   ├── StatCard.tsx 
 │       │   └── Sparkline.tsx      # inline SVG, handles null gaps + failure dots
 │       └── pages
 │           ├── LoginPage.tsx

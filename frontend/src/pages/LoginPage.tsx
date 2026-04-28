@@ -5,6 +5,8 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
+import { SiteFooter } from '../components/SiteFooter';
+import { SiteHeader } from '../components/SiteHeader';
 import { useAuth } from '../lib/auth';
 
 export function LoginPage() {
@@ -32,7 +34,9 @@ export function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-full items-center justify-center p-6">
+    <div className="flex min-h-full flex-col bg-background">
+      <SiteHeader />
+      <main className="flex flex-1 items-center justify-center p-6">
       <Card className="w-full max-w-sm">
         <CardHeader className="space-y-3">
           <div className="flex items-center gap-2 text-primary">
@@ -82,6 +86,8 @@ export function LoginPage() {
           </form>
         </CardContent>
       </Card>
+      </main>
+      <SiteFooter />
     </div>
   );
 }
