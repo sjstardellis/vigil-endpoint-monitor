@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light: clean IDE light — cool white with deep blue accent. */
+    --background: 210 30% 98%;
+    --foreground: 220 20% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 15%;
+
+    --primary: 212 90% 42%;
+    --primary-foreground: 210 30% 98%;
+
+    --secondary: 215 20% 94%;
+    --secondary-foreground: 220 20% 15%;
+
+    --muted: 215 20% 94%;
+    --muted-foreground: 220 10% 42%;
+
+    --accent: 212 70% 92%;
+    --accent-foreground: 212 90% 30%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 210 30% 98%;
+
+    --border: 215 20% 88%;
+    --input: 215 20% 88%;
+    --ring: 212 90% 42%;
+
+    --radius: 0.25rem;
+
+    --ok: 140 60% 32%;
+    --warn: 35 95% 42%;
+    --bad: 0 72% 45%;
+  }
+
+  .dark {
+    /* Dark: IDE Darcula-inspired — near-black with a blue cast, bright blue primary. */
+    --background: 220 15% 5%;
+    --foreground: 210 20% 94%;
+
+    --card: 220 15% 7%;
+    --card-foreground: 210 20% 94%;
+
+    --popover: 220 15% 7%;
+    --popover-foreground: 210 20% 94%;
+
+    --primary: 212 95% 62%;
+    --primary-foreground: 220 30% 8%;
+
+    --secondary: 220 12% 11%;
+    --secondary-foreground: 210 20% 94%;
+
+    --muted: 220 12% 13%;
+    --muted-foreground: 215 12% 60%;
+
+    --accent: 212 50% 16%;
+    --accent-foreground: 212 95% 78%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 210 20% 96%;
+
+    --border: 215 15% 16%;
+    --input: 215 15% 16%;
+    --ring: 212 95% 62%;
+
+    --ok: 140 75% 50%;
+    --warn: 45 95% 58%;
+    --bad: 0 85% 62%;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'zero', 'ss02';
+  }
+}

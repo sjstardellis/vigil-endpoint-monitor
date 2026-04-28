@@ -1,0 +1,23 @@
+{
+  "name": "endpoint-monitor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Orchestrates the backend API, BullMQ worker, and Vite frontend in one command.",
+  "scripts": {
+    "setup": "npm install && npm --prefix backend install && npm --prefix frontend install && npm --prefix backend run prisma:generate",
+    "dev": "npm run db:up && concurrently --kill-others --names api,worker,web --prefix-colors blue,magenta,green \"npm:dev:backend\" \"npm:dev:worker\" \"npm:dev:frontend\"",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:worker": "npm --prefix backend run dev:worker",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:logs": "docker compose logs -f",
+    "db:migrate": "npm --prefix backend run prisma:deploy",
+    "db:reset": "npm --prefix backend exec -- prisma migrate reset",
+    "build": "npm --prefix backend run build && npm --prefix frontend run build",
+    "typecheck": "npm --prefix backend run typecheck && npm --prefix frontend run typecheck"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
